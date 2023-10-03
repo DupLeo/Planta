@@ -18,8 +18,8 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:src="@drawable/_icon__global_search_" />
 
         <Space
@@ -29,8 +29,8 @@
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:src="@drawable/_icon__gallery_" />
 
         <Space
@@ -40,13 +40,14 @@
 
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:src="@drawable/_icon__add_square_" />
 
         <Space
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
+
 
 </LinearLayout>
