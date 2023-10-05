@@ -1,5 +1,6 @@
 package com.example.plantea.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,8 +18,7 @@ class PlanteaAdapter: RecyclerView.Adapter<PlanteaAdapter.PlanteaHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlanteaHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_list, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_list, parent, false)
         return PlanteaHolder(view)
     }
 
@@ -27,7 +27,7 @@ class PlanteaAdapter: RecyclerView.Adapter<PlanteaAdapter.PlanteaHolder>() {
     }
 
     override fun onBindViewHolder(holder: PlanteaHolder, position: Int) {
-        holder.imagePlante.setImageResource(R.drawable.ic_plante_photo)
+        holder.imagePlante.setImageResource(R.drawable.ic_launcher_foreground)
         holder.name.text = "Le nom de la belle plante"
         holder.famille.text = "La famille de la belle plante"
     }

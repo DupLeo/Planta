@@ -3,7 +3,10 @@ package com.example.plantea
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
+import androidx.recyclerview.widget.RecyclerView
+import com.example.plantea.adapter.PlanteaAdapter
 
 class CollectionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,5 +27,8 @@ class CollectionActivity : AppCompatActivity() {
             val intent = Intent(applicationContext, PictureActivity::class.java)
             startActivity(intent)
         }
+
+        val list : RecyclerView = findViewById(R.id.plante_liste)
+        list.adapter = PlanteaAdapter()
     }
 }
