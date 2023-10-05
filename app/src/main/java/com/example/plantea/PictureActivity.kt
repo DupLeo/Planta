@@ -5,13 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 
-class CollectionActivity : AppCompatActivity() {
+class PictureActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_collection)
+        setContentView(R.layout.activity_picture)
 
         val imageSearch =  findViewById<ImageView>(R.id.imageSearch)
-        val imagePicture = findViewById<ImageView>(R.id.imagePicture)
+        val imageCollection = findViewById<ImageView>(R.id.imageCollection)
 
         imageSearch.setOnClickListener {
             // Créez l'intention d'aller vers ExpenseActivity
@@ -19,9 +19,9 @@ class CollectionActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        imagePicture.setOnClickListener {
+        imageCollection.setOnClickListener {
             // Créez l'intention d'aller vers ExpenseActivity
-            val intent = Intent(applicationContext, PictureActivity::class.java)
+            val intent = Intent(applicationContext, CollectionActivity::class.java)
             startActivity(intent)
         }
     }
