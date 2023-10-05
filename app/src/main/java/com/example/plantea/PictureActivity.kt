@@ -3,7 +3,9 @@ package com.example.plantea
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageView
+import androidx.activity.result.contract.ActivityResultContracts
 
 class PictureActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -12,17 +14,28 @@ class PictureActivity : AppCompatActivity() {
 
         val imageSearch =  findViewById<ImageView>(R.id.imageSearch)
         val imageCollection = findViewById<ImageView>(R.id.imageCollection)
+        val imagePhoto: ImageView = findViewById(R.id.BoutonPhoto)
+        val buttonSave = findViewById<Button>(R.id.buttonSauvegarde)
+
+        // ====================================== MENU ========================================== //
 
         imageSearch.setOnClickListener {
-            // Créez l'intention d'aller vers ExpenseActivity
             val intent = Intent(applicationContext, MainActivity::class.java)
             startActivity(intent)
         }
 
         imageCollection.setOnClickListener {
-            // Créez l'intention d'aller vers ExpenseActivity
             val intent = Intent(applicationContext, CollectionActivity::class.java)
             startActivity(intent)
         }
+
+        // =============================== PRENDRE PHOTO  ======================================= //
+
+        val takePhoto = registerForActivityResult(ActivityResultContracts.TakePicturePreview()){
+                bitmap -> if (bitmap != null) imagePhoto.setImageBitmap(bitmap)
+        }
+        imagePhoto.setOnClickListener{takePhoto.launch(null)}
+
+
     }
 }
