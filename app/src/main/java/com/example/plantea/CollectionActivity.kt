@@ -29,6 +29,6 @@ class CollectionActivity : AppCompatActivity() {
         }
 
         val list : RecyclerView = findViewById(R.id.plante_liste)
-        list.adapter = PlanteaAdapter()
+        list.adapter = PlanteaAdapter(applicationContext)
     }
 }
