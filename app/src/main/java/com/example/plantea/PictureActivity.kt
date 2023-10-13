@@ -31,11 +31,8 @@ import java.util.Locale.*
 
 class PictureActivity : AppCompatActivity() {
     private lateinit var imagePhoto: ImageView
-    private val REQUEST_CAMERA_PERMISSION =
-        1
+    private val REQUEST_CAMERA_PERMISSION = 1
     private var imageCaptured = false // Variable de drapeau
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +43,8 @@ class PictureActivity : AppCompatActivity() {
         val buttonSave = findViewById<Button>(R.id.buttonSauvegarde)
 
 
-        // ====================================== Menu clicks ===================================//
+        // ====================================== Menu clicks ====================================//
+
         val imageSearch = findViewById<ImageView>(R.id.imageSearch)
         val imageCollection = findViewById<ImageView>(R.id.imageCollection)
 
@@ -59,7 +57,8 @@ class PictureActivity : AppCompatActivity() {
             val intent = Intent(applicationContext, CollectionActivity::class.java)
             startActivity(intent)
         }
-        //========================================================================================//
+
+        //=============================   PRENDRE UNE PHOTO     ==================================//
 
         val takePhoto =
             registerForActivityResult(ActivityResultContracts.TakePicturePreview()) { bitmap ->
@@ -69,6 +68,7 @@ class PictureActivity : AppCompatActivity() {
                 }
             }
 
+        // demande l'autorisation pour prendre une photo
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
             != PackageManager.PERMISSION_GRANTED) {
             // Demande la permission
@@ -77,9 +77,10 @@ class PictureActivity : AppCompatActivity() {
                 arrayOf(Manifest.permission.CAMERA),
                 REQUEST_CAMERA_PERMISSION
             )
-        } else {
-            imagePhoto.setOnClickListener { takePhoto.launch(null) }
         }
+        imagePhoto.setOnClickListener { takePhoto.launch(null) }
+
+        //===========================   SAUVEGARDER UNE PHOTO     ================================//
 
         buttonSave.setOnClickListener {
             // Sauvegarde l'image ici, si nécessaire
@@ -93,6 +94,9 @@ class PictureActivity : AppCompatActivity() {
         }
 
     }
+
+
+    // Enregistre une photo dans la galerie
     private fun saveImageToFile(bitmap: Bitmap) {
         val nomCommun = findViewById<EditText>(R.id.InputNom).text.toString()
         val nomDeFamille = findViewById<EditText>(R.id.InputNomDeFamille).text.toString()
@@ -129,10 +133,6 @@ class PictureActivity : AppCompatActivity() {
             showToast("Échec de l'enregistrement de l'image.")
         }
     }
-
-
-
-
 
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
