@@ -9,7 +9,7 @@ import com.example.plantea.model.Plante
 class PlanteaDataBaseHelper(context: Context): SQLiteOpenHelper(context, "plantea.db", null, 1) {
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(
-            "CREATE TABLE Plantea (" +
+            "CREATE TABLE IF NOT EXISTS Plantea  (" +
                     "${BaseColumns._ID} INTEGER," +
                     "${Plante.NAME} TEXT," +
                     "${Plante.FAMILLE} TEXT," +

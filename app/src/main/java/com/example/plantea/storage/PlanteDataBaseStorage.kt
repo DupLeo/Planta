@@ -11,10 +11,19 @@ class PlanteDataBaseStorage(context: Context): DataBaseStorage<Plante>(
     PlanteaDataBaseHelper(context), "plante"
 ) {
     override fun objectToValues(obj: Plante): ContentValues {
-        TODO("Not yet implemented")
+        val values = ContentValues()
+        values.put(Plante.ID, obj.id)
+        values.put(Plante.NAME, obj.name)
+        values.put(Plante.FAMILLE, obj.famille)
+        values.put(Plante.PHOTO, obj.photo)
+        return values
     }
 
     override fun cursorToObject(cursor: Cursor): Plante {
-        TODO("Not yet implemented")
+        val id = cursor.getInt(cursor.getColumnIndexOrThrow(Plante.ID))
+        val name = cursor.getString(cursor.getColumnIndexOrThrow(Plante.NAME))
+        val famille = cursor.getString(cursor.getColumnIndexOrThrow(Plante.FAMILLE))
+        val photo = cursor.getString(cursor.getColumnIndexOrThrow(Plante.PHOTO))
+        return Plante(id, name, famille, photo)
     }
 }
