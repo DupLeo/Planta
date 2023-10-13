@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper
 import android.provider.BaseColumns
 import com.example.plantea.model.Plante
 
-class PlanteaDataBaseHelper(context: Context): SQLiteOpenHelper(context, "tdapplication.db", null, 1) {
+class PlanteaDataBaseHelper(context: Context): SQLiteOpenHelper(context, "plantea.db", null, 1) {
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(
             "CREATE TABLE Expense (" +
