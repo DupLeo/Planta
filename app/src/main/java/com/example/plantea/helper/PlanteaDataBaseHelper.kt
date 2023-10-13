@@ -9,7 +9,7 @@ import com.example.plantea.model.Plante
 class PlanteaDataBaseHelper(context: Context): SQLiteOpenHelper(context, "plantea.db", null, 1) {
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(
-            "CREATE TABLE Expense (" +
+            "CREATE TABLE Plantea (" +
                     "${BaseColumns._ID} INTEGER," +
                     "${Plante.NAME} TEXT," +
                     "${Plante.FAMILLE} TEXT," +
@@ -20,6 +20,9 @@ class PlanteaDataBaseHelper(context: Context): SQLiteOpenHelper(context, "plante
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        TODO("Not yet implemented")
+        db?.execSQL("DROP TABLE IF EXISTS Plantea")
+        if (db != null) {
+            onCreate(db)
+        }
     }
 }
