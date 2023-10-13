@@ -8,7 +8,7 @@ object PlanteStorage {
 
     fun get(context: Context): Storage<Plante> {
         lateinit var storage: Storage<Plante>
-        storage = PlanteJSONFileStorage(context)
+        storage = PlanteDataBaseStorage(context)
         return storage
     }
 }
