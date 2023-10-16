@@ -4,6 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
+import androidx.recyclerview.widget.RecyclerView
+import com.example.plantea.adapter.PlanteaAdapter
+import com.example.plantea.adapter.PlanteaAdapterResearch
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,6 +27,9 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(applicationContext, PictureActivity::class.java)
             startActivity(intent)
         }
+
+        val list : RecyclerView = findViewById(R.id.liste_recherche)
+        list.adapter = PlanteaAdapterResearch(applicationContext)
 
 
 
