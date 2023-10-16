@@ -20,6 +20,8 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.core.graphics.drawable.toBitmap
+import com.example.plantea.model.Plante
+import com.example.plantea.storage.PlanteDataBaseStorage
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -87,11 +89,15 @@ class PictureActivity : AppCompatActivity() {
             if (imageCaptured) {
                 // Une image a été capturée, vous pouvez la sauvegarder
                 saveImageToFile(imagePhoto.drawable.toBitmap())
+
+
+
             } else {
                 // Aucune image n'a été capturée, affichez un message d'erreur
-                showToast("Prenez un photo")
+                showToast("Prenez une photo")
             }
         }
+
 
     }
 
@@ -123,8 +129,25 @@ class PictureActivity : AppCompatActivity() {
 
             // Récupérer l'URI de l'image sauvegardée
             val savedImageUri = imageUri.toString()
+            //showToast("Image enregistrée avec succès. Lien : $savedImageUri")
 
-            showToast("Image enregistrée avec succès. Lien : $savedImageUri")
+            // Créez un objet Plante avec les informations nécessaires
+            val plante = Plante(
+                id = 0,
+                name = nomCommun,
+                famille = nomDeFamille,
+                photo = savedImageUri
+            )
+
+            // Insérez la plante dans la base de données
+            val planteStorage = PlanteDataBaseStorage(this)
+            val insertedId = planteStorage.insert(plante)
+
+            if (insertedId != -1) {
+                showToast("Plante enregistrée avec succès. ID: $insertedId")
+            } else {
+                showToast("Échec de l'enregistrement de la plante.")
+            }
 
             // Réinitialiser le drapeau imageCaptured à false
             imageCaptured = false
