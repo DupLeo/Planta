@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.plantea.R
 import com.example.plantea.storage.PlanteStorage
 
@@ -29,7 +30,11 @@ class PlanteaAdapter(private val context: Context): RecyclerView.Adapter<Plantea
 
     override fun onBindViewHolder(holder: PlanteaHolder, position: Int) {
         val fleur = PlanteStorage.get(context).findAll().get(position)
-        holder.imagePlante.setImageResource(R.drawable.ic_launcher_foreground) // ici mettre le lien de la photo avec 'fleur.photo'
+        Glide.with(context)
+            .load(fleur.photo) // Ici, fleur.photo devrait contenir l'URI de l'image
+            .placeholder(R.drawable.ic_launcher_foreground) // Image de remplacement en cas de chargement
+            .error(R.drawable.ic_launcher_foreground) // Image de remplacement en cas d'erreur
+            .into(holder.imagePlante)
         holder.name.text = fleur.name
         holder.famille.text = fleur.famille
     }
