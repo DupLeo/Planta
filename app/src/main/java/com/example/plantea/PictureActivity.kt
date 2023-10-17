@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -109,6 +110,8 @@ class PictureActivity : AppCompatActivity() {
 
     // Enregistre une photo dans la galerie
     private fun saveImageToFile(finalBitmap: Bitmap) {
+        val nomCommun = findViewById<EditText>(R.id.InputNom).text.toString()
+        val nomDeFamille = findViewById<EditText>(R.id.InputNomDeFamille).text.toString()
         val root = Environment.getExternalStorageDirectory().toString()
         val myDir = File("$root/saved_images")
         myDir.mkdirs()
@@ -124,7 +127,10 @@ class PictureActivity : AppCompatActivity() {
             out.flush()
             out.close()
             val filePath = file.absolutePath
-            handlePlanteInsertion("nom_1", "famille_1", filePath)
+            handlePlanteInsertion(nomCommun, nomDeFamille, filePath)
+            // redirection
+            val intent = Intent(applicationContext, CollectionActivity::class.java)
+            startActivity(intent)
         } catch (e: Exception) {
             e.printStackTrace()
         }
