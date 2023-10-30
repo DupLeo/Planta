@@ -7,7 +7,6 @@ data class Plante(
     val photo: String,
 ){
     companion object{
-        const val ID ="id"
         const val NAME = "name"
         const val FAMILLE = "famille"
         const val PHOTO = "photo"

@@ -10,9 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.plantea.R
 import com.example.plantea.model.Plante
-import com.example.plantea.storage.PlanteStorage
 
-class PlanteaAdapterResearch(private val context: Context, private val plantes: List<Plante>) : RecyclerView.Adapter<PlanteaAdapterResearch.PlanteaHolderR>() {
+class PlanteaAdapterResearch(private val context: Context, private var plantes: List<Plante>) : RecyclerView.Adapter<PlanteaAdapterResearch.PlanteaHolderR>() {
 
     class PlanteaHolderR(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imagePlante: ImageView = itemView.findViewById(R.id.image_plante)
@@ -36,6 +35,10 @@ class PlanteaAdapterResearch(private val context: Context, private val plantes: 
             .placeholder(R.drawable.ic_launcher_foreground) // Image de remplacement en cas de chargement
             .error(R.drawable.ic_launcher_foreground) // Image de remplacement en cas d'erreur
             .into(holder.imagePlante)
+    }
+    fun updateData(newPlantes: List<Plante>) {
+        plantes = newPlantes
+        notifyDataSetChanged() // Notifiez l'adaptateur que les données ont changé
     }
 
     override fun getItemCount(): Int {

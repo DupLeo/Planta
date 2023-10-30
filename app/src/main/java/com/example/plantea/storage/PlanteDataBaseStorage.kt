@@ -3,7 +3,6 @@ package com.example.plantea.storage
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
-import android.provider.BaseColumns
 import com.example.plantea.helper.PlanteaDataBaseHelper
 import com.example.plantea.model.Plante
 import com.example.plantea.storage.utility.DataBaseStorage

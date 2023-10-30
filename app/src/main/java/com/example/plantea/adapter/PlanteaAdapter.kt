@@ -29,7 +29,7 @@ class PlanteaAdapter(private val context: Context): RecyclerView.Adapter<Plantea
     }
 
     override fun onBindViewHolder(holder: PlanteaHolder, position: Int) {
-        val fleur = PlanteStorage.get(context).findAll().get(position)
+        val fleur = PlanteStorage.get(context).findAll()[position]
         Glide.with(context)
             .load(fleur.photo) // Ici, fleur.photo devrait contenir l'URI de l'image
             .placeholder(R.drawable.ic_launcher_foreground) // Image de remplacement en cas de chargement
