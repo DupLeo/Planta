@@ -1,13 +1,10 @@
 package com.example.plantea
 import android.Manifest
-import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
-import android.provider.MediaStore
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -21,7 +18,6 @@ import com.example.plantea.model.Plante
 import com.example.plantea.storage.PlanteDataBaseStorage
 import java.io.File
 import java.io.FileOutputStream
-import java.util.Locale.*
 import java.util.Random
 
 
@@ -29,7 +25,6 @@ class PictureActivity : AppCompatActivity() {
     private lateinit var imagePhoto: ImageView
     private val REQUEST_CAMERA_PERMISSION = 1
     private val REQUEST_WRITE_EXTERNAL_STORAGE = 2
-    private val REQUEST_MANAGE_EXTERNAL_STORAGE = 3
     private var imageCaptured = false // Variable de drapeau
 
     override fun onCreate(savedInstanceState: Bundle?) {
