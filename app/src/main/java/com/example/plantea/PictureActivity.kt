@@ -3,6 +3,7 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.widget.Button
@@ -104,14 +105,30 @@ class PictureActivity : AppCompatActivity() {
     private fun saveImageToFile(finalBitmap: Bitmap) {
         val nomCommun = findViewById<EditText>(R.id.InputNom).text.toString()
         val nomDeFamille = findViewById<EditText>(R.id.InputNomDeFamille).text.toString()
-        val root = Environment.getExternalStorageDirectory().toString()
-        val myDir = File("$root/saved_images")
+
+        val root: String
+        val myDir: File
+
+        // Vérifiez la version de l'API
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            // Version d'API 34 ou supérieure, utilisez un autre répertoire ou chemin
+            root = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString()
+            myDir = File("$root/saved_images_api34")
+        } else {
+            // Versions d'API antérieures à 34, utilisez le répertoire "/saved_images"
+            root = Environment.getExternalStorageDirectory().toString()
+            myDir = File("$root/saved_images")
+        }
+
+        // Créez le répertoire si nécessaire
         myDir.mkdirs()
+
         val generator = Random()
         var n = 10000
         n = generator.nextInt(n)
         val fname = "Image-$n.jpg"
         val file = File(myDir, fname)
+
         if (file.exists()) file.delete()
         try {
             val out = FileOutputStream(file)
@@ -127,6 +144,8 @@ class PictureActivity : AppCompatActivity() {
             e.printStackTrace()
         }
     }
+
+
 
     private fun handlePlanteInsertion(nomCommun: String, nomDeFamille: String, savedImageUri: String) {
         val plante = Plante(
